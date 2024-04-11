@@ -18,7 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure();
+    .AddInfrastructure(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
@@ -38,7 +38,7 @@ builder.Services.AddOpenApiDocument(settings =>
 
     settings.PostProcess = document =>
     {
-        document.Schemes = new[] { OpenApiSchema.Https, OpenApiSchema.Http };
+        document.Schemes = [OpenApiSchema.Https, OpenApiSchema.Http];
     };
 });
 
@@ -49,7 +49,7 @@ app.UseOpenApi(settings =>
     settings.Path = "/api/swagger/{documentName}/swagger.json";
     settings.PostProcess = (document, request) =>
     {
-        document.Schemes = new[] { OpenApiSchema.Https, OpenApiSchema.Http };
+        document.Schemes = [OpenApiSchema.Https, OpenApiSchema.Http];
     };
 });
 

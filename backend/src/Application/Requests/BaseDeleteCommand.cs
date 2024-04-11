@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Application.Common.Interfaces;
+using AutoMapper;
 using Domain.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

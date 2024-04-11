@@ -1,25 +1,16 @@
 ﻿using Application.Requests.Users.Commands;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers;
+
+[ApiController]
+[Route("api/users")]
+public class UsersController : ApiController
 {
-    [ApiController]
-    [Route("api/users")]
-    public class UsersController : ControllerBase
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command)
     {
-        private readonly IMediator _mediator;
-
-        public UsersController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand command)
-        {
-            return Ok(await _mediator.Send(command));
-        }
+        return Ok(await Mediator.Send(command));
     }
 }
