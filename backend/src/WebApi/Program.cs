@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using NSwag;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,8 +31,34 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddOpenApiDocument(settings =>
+{
+    settings.Title = "StudyHub";
+    settings.DocumentName = "v1";
+
+    settings.PostProcess = document =>
+    {
+        document.Schemes = new[] { OpenApiSchema.Https, OpenApiSchema.Http };
+    };
+});
+
 var app = builder.Build();
 
+app.UseOpenApi(settings =>
+{
+    settings.Path = "/api/swagger/{documentName}/swagger.json";
+    settings.PostProcess = (document, request) =>
+    {
+        document.Schemes = new[] { OpenApiSchema.Https, OpenApiSchema.Http };
+    };
+});
+
+app.UseSwaggerUi(settings =>
+{
+    settings.Path = "/api/swagger";
+    settings.DocumentPath = "/api/swagger/{documentName}/swagger.json";
+    settings.DocExpansion = "list";
+});
 
 app.UseStaticFiles();
 

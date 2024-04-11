@@ -17,7 +17,7 @@ public class CreateUserCommand : IMapTo<User>, IRequest<Guid>
 
     public int Role { get; set; }
 
-    public List<string> Contacts { get; set; }
+    public List<string> Contacts { get; set; } = new List<string>();
 
     public Guid? GroupId { get; set; }
 
@@ -31,7 +31,9 @@ public class CreateUserCommand : IMapTo<User>, IRequest<Guid>
 
 public class CreateUserCommandHandler : BaseCreateCommand<User>, IRequestHandler<CreateUserCommand, Guid>
 {
-    public CreateUserCommandHandler(IApplicationDbContext applicationDbContext, IMapper mapper)
+    public CreateUserCommandHandler(
+        IApplicationDbContext applicationDbContext,
+        IMapper mapper)
         : base(applicationDbContext, mapper)
     {
     }
