@@ -16,5 +16,13 @@ public class User : IBaseEntity
 
     public string Patronymic { get; set; } = string.Empty;
 
-    public required ICollection<Contact> Contacts { get; set; }
+    public ICollection<Contact> Contacts { get; set; } = null!;
+
+    public Guid? StudentId { get; set; }
+
+    public Student? Student { get; set; }
+
+    public Guid? TeacherId { get; set; }
+
+    public Teacher? Teacher { get; set; }
 }

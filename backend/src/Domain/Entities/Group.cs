@@ -10,9 +10,9 @@ public class Group : IBaseEntity
 
     public Guid UniversityId { get; set; }
 
-    public University University { get; set; }
+    public University University { get; set; } = null!;
 
-    public ICollection<User> Students { get; set; }
+    public ICollection<Student> Students { get; set; } = null!;
 
-    public ICollection<Semester> Semesters { get; set; }
+    public ICollection<SubjectToGroup> SubjectToGroups { get; set; } = null!;
 }

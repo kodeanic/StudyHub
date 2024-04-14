@@ -2,17 +2,19 @@
 
 namespace Domain.Entities;
 
-public class Subject : IBaseEntity
+public class Teacher : IBaseEntity
 {
     public Guid Id { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
 
-    public ICollection<SubjectToGroup> SubjectToGroups { get; set; } = null!;
+    public User User { get; set; } = null!;
+
+    public Guid UniversityId { get; set; }
+
+    public University University { get; set; } = null!;
 
     public ICollection<SubjectToTeacher> SubjectToTeachers { get; set; } = null!;
 
     public ICollection<Comment> Comments { get; set; } = null!;
-
-    public ICollection<Work> Works { get; set; } = null!;
 }
