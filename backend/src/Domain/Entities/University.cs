@@ -10,5 +10,7 @@ public class University : IBaseEntity
 
     public string City { get; set; } = string.Empty;
 
-    public ICollection<Group> Groups { get; set; }
+    public ICollection<Group> Groups { get; set; } = null!;
+
+    public ICollection<Teacher> Teachers { get; set; } = null!;
 }

@@ -1,15 +1,10 @@
-﻿using Domain.Interfaces;
+﻿using Application.Common.Mapping;
+using Domain.Entities;
 
-namespace Domain.Entities;
+namespace Application.Requests.Users;
 
-public class User : IBaseEntity
+public class UserDto : IMapFrom<User>
 {
-    public Guid Id { get; set; }
-
-    public string Login { get; set; } = string.Empty;
-
-    public string Password { get; set; } = string.Empty;
-
     public string FirstName { get; set; } = string.Empty;
 
     public string LastName { get; set; } = string.Empty;
@@ -20,9 +15,5 @@ public class User : IBaseEntity
 
     public Guid? StudentId { get; set; }
 
-    public Student? Student { get; set; }
-
     public Guid? TeacherId { get; set; }
-
-    public Teacher? Teacher { get; set; }
 }

@@ -6,9 +6,9 @@ public class Contact : IBaseEntity
 {
     public Guid Id { get; set; }
 
-    public string Link { get; set; } = string.Empty;
+    public string Data { get; set; } = string.Empty;
 
     public Guid UserId { get; set; }
 
-    public User User { get; set; }
+    public User User { get; set; } = null!;
 }
