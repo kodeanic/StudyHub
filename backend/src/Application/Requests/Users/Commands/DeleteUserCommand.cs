@@ -8,6 +8,11 @@ namespace Application.Requests.Users.Commands;
 public class DeleteUserCommand : IBaseCommand, IRequest
 {
     public Guid Id { get; set; }
+
+    public DeleteUserCommand(Guid userId)
+    {
+        Id = userId;
+    }
 }
 
 public class DeleteUserCommandHandler : BaseDeleteCommand<User>, IRequestHandler<DeleteUserCommand>
@@ -21,6 +26,6 @@ public class DeleteUserCommandHandler : BaseDeleteCommand<User>, IRequestHandler
 
     public Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
-        return Delete(request, cancellationToken);
+        return Delete(request, null, cancellationToken);
     }
 }

@@ -26,7 +26,7 @@ public class BaseUpdateCommand<TEntity> where TEntity : class, IBaseEntity
         var entity = await ApplicationDbContext
             .Set<TEntity>()
             .SingleOrDefaultAsync(x => x.Id == request.Id, cancellationToken) ??
-        throw new Exception($"{nameof(TEntity)}, {request.Id}");
+        throw new Exception($"{typeof(TEntity).Name}, {request.Id}");
 
         Mapper.Map(request, entity);
 

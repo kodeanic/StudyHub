@@ -26,7 +26,7 @@ public abstract class BaseDeleteCommand<TEntity> where TEntity : class, IBaseEnt
         var entity = await ApplicationDbContext
             .Set<TEntity>()
             .SingleOrDefaultAsync(x => x.Id == request.Id, cancellationToken) ??
-        throw new Exception($"{nameof(TEntity)}, {request.Id}");
+        throw new Exception($"{typeof(TEntity).Name}, {request.Id}");
 
         if (beforeDelete != null)
         {
